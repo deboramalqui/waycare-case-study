@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Waycare — Filterable Data Table</title>
+<style>
+  :root{
+    --ink:#14172b; --muted:#5b6078; --line:#e3e5ee; --bg:#ffffff; --soft:#f5f6fb;
+    --navy:#2b3490; --blue:#27a9e1; --accent:#ff7a2f;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{--ink:#eceefb; --muted:#9aa0bd; --line:#2a2e48; --bg:#0f1120; --soft:#171a30; --navy:#8a94ff;}
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 -apple-system,"Helvetica Neue",Inter,Arial,sans-serif}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .narrow{max-width:680px}
+  header.hero{padding:96px 0 56px}
+  .eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600}
+  h1{font-size:clamp(38px,6vw,64px);line-height:1.05;margin:14px 0 20px;letter-spacing:-.02em}
+  .lead{font-size:21px;color:var(--muted);max-width:720px}
+  .meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px;margin-top:48px;padding-top:28px;border-top:1px solid var(--line)}
+  .meta dt{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .meta dd{margin:4px 0 0;font-weight:500}
+  figure{margin:0}
+  figure img{width:100%;display:block;border-radius:12px;border:1px solid var(--line);background:#fff}
+  figcaption{font-size:14px;color:var(--muted);margin-top:10px}
+  .cover{margin-bottom:24px}
+  section{padding:64px 0;border-top:1px solid var(--line)}
+  h2{font-size:32px;letter-spacing:-.01em;margin:0 0 8px}
+  .num{font-size:13px;color:var(--accent);font-weight:600;letter-spacing:.14em}
+  h3{font-size:20px;margin:36px 0 6px}
+  p{margin:0 0 16px}
+  ul{padding-left:20px;margin:0 0 16px} li{margin-bottom:6px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:28px 0}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:28px 0}
+  .card{background:var(--soft);border-radius:12px;padding:22px}
+  .card h4{margin:0 0 6px;font-size:16px}
+  .card p{margin:0;font-size:15px;color:var(--muted)}
+  .stack{display:flex;flex-direction:column;gap:28px;margin:28px 0}
+  .pull{font-size:26px;line-height:1.35;letter-spacing:-.01em;border-left:4px solid var(--accent);padding-left:22px;margin:36px 0}
+  footer{padding:56px 0 96px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+  @media(max-width:720px){.grid2,.grid3{grid-template-columns:1fr} header.hero{padding:56px 0 32px} body{font-size:16px}}
+</style>
+</head>
+<body>
+
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">Case study · UX/UI Design Internship · 2019</div>
+  <h1>Redesigning a filterable data table</h1>
+  <p class="lead">Redesigning a filterable data table for Waycare’s AI traffic-management platform, used in smart-city operations.</p>
+  <dl class="meta">
+    <div><dt>Company</dt><dd>Waycare Technologies (acquired by Rekor Systems, 2021)</dd></div>
+    <div><dt>Role</dt><dd>UX/UI Designer (Intern)</dd></div>
+    <div><dt>Where</dt><dd>Tel Aviv, Israel · 2019</dd></div>
+    <div><dt>Scope</dt><dd>User research · workflow mapping · interaction design · pixel-perfect UI</dd></div>
+    <div><dt>Tools</dt><dd>Sketch</dd></div>
+  </dl>
+</div></header>
+
+<div class="wrap cover">
+  <figure><img src="img/bo-14.png" alt="Redesigned incident-log table with filters, period picker and expanded shift row">
+  <figcaption>The incident log with an expanded shift.</figcaption></figure>
+</div>
+
+<section><div class="wrap narrow">
+  <div class="num">01 — CONTEXT</div>
+  <h2>The table at the core of the back-office</h2>
+  <p>Waycare’s platform uses AI for traffic management in smart-city operations. Its back-office includes an incident log: a filterable data table with many columns and a long history of shifts and reports.</p>
+  <p class="pull">How do you give users dense data, flexible filtering and in-place editing without making the screen feel like a spreadsheet?</p>
+</div></section>
+
+<section><div class="wrap">
+  <div class="num">02 — DESIGN DECISIONS</div>
+  <h2>Five pieces that make the table work</h2>
+
+  <h3>1. A table organized in groups</h3>
+  <div class="narrow"><p>Columns are split into labeled groups (report state, report attributes, shift characteristics, geolocation, timing, others). A Display panel lets each user choose which groups to show and save the workspace.</p></div>
+  <figure class="stack"><img src="img/bo-10.png" alt="Table divided into groups of information"></figure>
+
+  <h3>2. Filters as chips</h3>
+  <div class="narrow"><p>Free-text filters become chips once confirmed. Hover reveals each element’s behavior, and chips can be deleted individually or all at once.</p></div>
+  <figure class="stack"><img src="img/bo-03.png" alt="Filter space behavior: hover, add, chips"></figure>
+
+  <h3>3. A period picker</h3>
+  <div class="narrow"><p>Two modes: <strong>Period</strong> (date range, weekdays, hours and presets) and <strong>One day</strong> (a day and an hour range). Selected values turn blue, and the applied range collapses into a chip that resets on hover. I iterated on it in Sketch.</p></div>
+  <figure class="stack"><img src="img/bo-09.png" alt="Final period picker"></figure>
+
+  <h3>4. State references</h3>
+  <div class="narrow"><p>A one-letter state at the start of each row (Ongoing, Done, Required attention, Paused, Eliminated) gives quick orientation. Sorting and filters appear on hover.</p></div>
+  <figure class="stack"><img src="img/bo-11.png" alt="State references and sorting"></figure>
+
+  <h3>5. Toolkit and change tracking</h3>
+  <div class="narrow"><p>Each shift has a toolkit: open shift, download, open attachment, mark as, changes, eliminate. Edited fields carry a marker with their history, and a dialog asks whether to save now or review.</p></div>
+  <figure class="stack"><img src="img/bo-13.png" alt="Toolkit"></figure>
+</div></section>
+
+<section><div class="wrap narrow">
+  <div class="num">03 — DELIVERY</div>
+  <h2>Spec and pixel-perfect UI</h2>
+  <p>I documented the behavior in a 16-page spec and built reusable Sketch symbols (radio buttons, checkboxes, picker states). The UI was finished pixel-perfect.</p>
+  <h3>Also at Waycare</h3>
+  <p>I also worked on the customer-facing Help Center.</p>
+  <figure><img src="img/helpcenter-home.png" alt="Waycare Help Center home"></figure>
+</div></section>
+
+<footer><div class="wrap">Waycare Technologies · UX/UI Design Internship · Israel, 2019. </div></footer>
+</body>
+</html>
