@@ -10,8 +10,9 @@
     --navy:#2b3490; --blue:#27a9e1; --accent:#ff7a2f;
   }
   @media (prefers-color-scheme:dark){
-    :root{--ink:#eceefb; --muted:#9aa0bd; --line:#2a2e48; --bg:#0f1120; --soft:#171a30; --navy:#8a94ff;}
+    :root:not([data-theme="light"]){--ink:#eceefb; --muted:#9aa0bd; --line:#2a2e48; --bg:#0f1120; --soft:#171a30; --navy:#8a94ff;}
   }
+  :root[data-theme="dark"]{--ink:#eceefb; --muted:#9aa0bd; --line:#2a2e48; --bg:#0f1120; --soft:#171a30; --navy:#8a94ff;}
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 -apple-system,"Helvetica Neue",Inter,Arial,sans-serif}
   .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
@@ -49,62 +50,103 @@
 <header class="hero"><div class="wrap">
   <div class="eyebrow">Case study · UX/UI Design Internship · 2019</div>
   <h1>Redesigning a filterable data table</h1>
-  <p class="lead">Redesigning a filterable data table for Waycare’s AI traffic-management platform, used in smart-city operations.</p>
+  <p class="lead">The incident log of Waycare’s AI traffic-management platform, used in smart-city operations: from workflow mapping to a 16-page behaviour spec and pixel-perfect UI, plus the customer Help Center designed alongside it.</p>
   <dl class="meta">
     <div><dt>Company</dt><dd>Waycare Technologies (acquired by Rekor Systems, 2021)</dd></div>
     <div><dt>Role</dt><dd>UX/UI Designer (Intern)</dd></div>
     <div><dt>Where</dt><dd>Tel Aviv, Israel · 2019</dd></div>
-    <div><dt>Scope</dt><dd>User research · workflow mapping · interaction design · pixel-perfect UI</dd></div>
-    <div><dt>Tools</dt><dd>Sketch</dd></div>
+    <div><dt>Scope</dt><dd>Workflow mapping · interaction design · behaviour spec · pixel-perfect UI · icon set</dd></div>
+    <div><dt>Tools</dt><dd>Sketch, Illustrator, Zendesk</dd></div>
   </dl>
 </div></header>
 
 <div class="wrap cover">
   <figure><img src="img/bo-14.png" alt="Redesigned incident-log table with filters, period picker and expanded shift row">
-  <figcaption>The incident log with an expanded shift.</figcaption></figure>
+  <figcaption>The incident log with an expanded shift: filter chips, period chip, state references, inline edit.</figcaption></figure>
 </div>
 
 <section><div class="wrap narrow">
   <div class="num">01 — CONTEXT</div>
   <h2>The table at the core of the back-office</h2>
-  <p>Waycare’s platform uses AI for traffic management in smart-city operations. Its back-office includes an incident log: a filterable data table with many columns and a long history of shifts and reports.</p>
+  <p>Waycare’s platform uses AI for traffic management in smart-city operations. Operators work on a live map, and behind it sits a back-office where every incident and shift is reviewed, filtered and updated. The incident log is a wide table with many columns and a long history; it is where operators spend most of their time, and where the most could be gained.</p>
   <p class="pull">How do you give users dense data, flexible filtering and in-place editing without making the screen feel like a spreadsheet?</p>
 </div></section>
 
 <section><div class="wrap">
-  <div class="num">02 — DESIGN DECISIONS</div>
-  <h2>Five pieces that make the table work</h2>
+  <div class="num">02 — STRUCTURE</div>
+  <h2>Four areas, one screen</h2>
+  <div class="narrow"><p>I mapped the workflow around the table, from opening a day’s log to saving a change, and split the screen into four areas: platform head, document head, filter space and table. Everything that follows lives in one of them.</p></div>
+  <figure class="stack"><img src="img/bo-02.png" alt="Structure of the back-office screen"><figcaption>Anatomy of the screen.</figcaption></figure>
+</div></section>
 
-  <h3>1. A table organized in groups</h3>
-  <div class="narrow"><p>Columns are split into labeled groups (report state, report attributes, shift characteristics, geolocation, timing, others). A Display panel lets each user choose which groups to show and save the workspace.</p></div>
-  <figure class="stack"><img src="img/bo-10.png" alt="Table divided into groups of information"></figure>
+<section><div class="wrap">
+  <div class="num">03 — THE TABLE</div>
+  <h2>Columns in groups, a display you can save</h2>
+  <div class="narrow"><p>Columns are split into labelled groups (report state, report attributes, shift characteristics, geolocation, timing, others), so a user reads one theme at a time. A Display panel lets each person choose which groups to show and keep that workspace for next time.</p></div>
+  <div class="grid2">
+    <figure><img src="img/bo-10.png" alt="Table divided into groups of information"><figcaption>Six groups of information.</figcaption></figure>
+    <figure><img src="img/bo-16.png" alt="Display panel for choosing visible columns"><figcaption>Display: choose and save the visible groups.</figcaption></figure>
+  </div>
+</div></section>
 
-  <h3>2. Filters as chips</h3>
-  <div class="narrow"><p>Free-text filters become chips once confirmed. Hover reveals each element’s behavior, and chips can be deleted individually or all at once.</p></div>
-  <figure class="stack"><img src="img/bo-03.png" alt="Filter space behavior: hover, add, chips"></figure>
+<section><div class="wrap">
+  <div class="num">04 — FILTERS</div>
+  <h2>Filters that behave like chips</h2>
+  <div class="narrow"><p>Free-text filters become chips once confirmed. Hover explains each element, and chips can be deleted one by one or all at once. The filter space stays quiet until it is needed.</p></div>
+  <figure class="stack"><img src="img/bo-03.png" alt="Filter space behavior: hover, add, chips"><figcaption>Free filter: regular, hover, add, created, delete.</figcaption></figure>
+</div></section>
 
-  <h3>3. A period picker</h3>
-  <div class="narrow"><p>Two modes: <strong>Period</strong> (date range, weekdays, hours and presets) and <strong>One day</strong> (a day and an hour range). Selected values turn blue, and the applied range collapses into a chip that resets on hover. I iterated on it in Sketch.</p></div>
-  <figure class="stack"><img src="img/bo-09.png" alt="Final period picker"></figure>
+<section><div class="wrap">
+  <div class="num">05 — PERIOD PICKER</div>
+  <h2>The component that got the most iteration</h2>
+  <div class="narrow"><p>Time is the first filter almost everyone reaches for, so the period picker is specified screen by screen. Two modes: <strong>Period</strong> (a date range with presets, weekdays and hours) and <strong>One day</strong> (a day and an hour range). Selected values turn blue, unselected ones stay quiet, and the applied range collapses into a chip that resets on hover.</p></div>
+  <figure class="stack"><img src="img/picker-explorations.png" alt="Sketch artboards: period-picker explorations"><figcaption>Sketch explorations: fitting presets, weekdays and hours into one small popover.</figcaption></figure>
+  <div class="grid2">
+    <figure><img src="img/bo-04.png" alt="Behavior of period picker"><figcaption>Behaviour: regular, hover, open, applied, reset.</figcaption></figure>
+    <figure><img src="img/bo-06.png" alt="Weekday selection in the Period tab"><figcaption>Weekdays: one click turns a day on or off.</figcaption></figure>
+    <figure><img src="img/bo-07.png" alt="Calendar navigation by year and month"><figcaption>Calendar: navigate year and month, unavailable dates greyed.</figcaption></figure>
+    <figure><img src="img/bo-09.png" alt="Final picker with Done"><figcaption>Done: the setting becomes a chip above the table.</figcaption></figure>
+  </div>
+  <figure class="stack"><img src="img/picker-in-context.png" alt="Picker variations and the picker placed over the table"><figcaption>Variations tested over the real table before locking the design.</figcaption></figure>
+</div></section>
 
-  <h3>4. State references</h3>
-  <div class="narrow"><p>A one-letter state at the start of each row (Ongoing, Done, Required attention, Paused, Eliminated) gives quick orientation. Sorting and filters appear on hover.</p></div>
-  <figure class="stack"><img src="img/bo-11.png" alt="State references and sorting"></figure>
+<section><div class="wrap">
+  <div class="num">06 — STATES AND TOOLS</div>
+  <h2>Orientation at a glance, actions on hover</h2>
+  <div class="narrow"><p>A one-letter state at the start of each row (Ongoing, Done, Required attention, Paused, Eliminated) gives quick orientation; sorting and filters appear on hover. Each shift has a toolkit: open shift, download, open attachment, mark as, changes, eliminate.</p></div>
+  <div class="grid3">
+    <figure><img src="img/bo-11.png" alt="State references and sorting"><figcaption>State references and sort.</figcaption></figure>
+    <figure><img src="img/bo-12.png" alt="Row hover reveals the toolkit"><figcaption>Hover reveals the toolkit.</figcaption></figure>
+    <figure><img src="img/bo-13.png" alt="Toolkit items"><figcaption>Toolkit, with and without attachments.</figcaption></figure>
+  </div>
+</div></section>
 
-  <h3>5. Toolkit and change tracking</h3>
-  <div class="narrow"><p>Each shift has a toolkit: open shift, download, open attachment, mark as, changes, eliminate. Edited fields carry a marker with their history, and a dialog asks whether to save now or review.</p></div>
-  <figure class="stack"><img src="img/bo-13.png" alt="Toolkit"></figure>
+<section><div class="wrap">
+  <div class="num">07 — EDITING</div>
+  <h2>Expand, edit in place, keep the history</h2>
+  <div class="narrow"><p>Double-click expands a shift to its full record; double-click a value to edit it. Edited fields carry a small marker with their history, and a dialog asks whether to save now or review first. The Display icon reminds you to save your workspace.</p></div>
+  <div class="grid2">
+    <figure><img src="img/bo-14.png" alt="Expanded shift"><figcaption>Expanded shift and quick access to switch head.</figcaption></figure>
+    <figure><img src="img/bo-15.png" alt="Change tracking and save dialog"><figcaption>Changes: history marker, edit mode, save-or-review dialog.</figcaption></figure>
+  </div>
 </div></section>
 
 <section><div class="wrap narrow">
-  <div class="num">03 — DELIVERY</div>
-  <h2>Spec and pixel-perfect UI</h2>
-  <p>I documented the behavior in a 16-page spec and built reusable Sketch symbols (radio buttons, checkboxes, picker states). The UI was finished pixel-perfect.</p>
-  <h3>Also at Waycare</h3>
-  <p>I also worked on the customer-facing Help Center.</p>
-  <figure><img src="img/helpcenter-home.png" alt="Waycare Help Center home"></figure>
+  <div class="num">08 — DELIVERY</div>
+  <h2>Spec, symbols, pixel-perfect UI</h2>
+  <p>Every behaviour (regular, hover, selected, unselected, empty, saved) is documented in a 16-page interaction spec so engineering could build without guessing. Reusable Sketch symbols for radios, checkboxes, tabs and picker states kept the screens consistent, and the icon set for the platform was redrawn pixel-perfect in Illustrator.</p>
 </div></section>
 
-<footer><div class="wrap">Waycare Technologies · UX/UI Design Internship · Israel, 2019. </div></footer>
+<section><div class="wrap">
+  <div class="num">09 — ALSO AT WAYCARE</div>
+  <h2>The customer Help Center</h2>
+  <div class="narrow"><p>Alongside the table I designed the customer-facing Help Center on Zendesk: the user flow from login to request, the home with its three entry points (product documentation, FAQs, news and release notes) and the branding for the section.</p></div>
+  <div class="grid2">
+    <figure><img src="img/helpcenter-userflow.png" alt="Help Center user flow"><figcaption>User flow: logged in or not, know what you need or not, request or browse.</figcaption></figure>
+    <figure><img src="img/helpcenter-home.png" alt="Waycare Help Center home"><figcaption>Help Center home.</figcaption></figure>
+  </div>
+</div></section>
+
+<footer><div class="wrap">Waycare Technologies · UX/UI Design Internship · Israel, 2019 · Working files.</div></footer>
 </body>
 </html>
